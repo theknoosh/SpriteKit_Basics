@@ -68,7 +68,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let animation:SKAction = SKAction.animate(with: [frame1,frame2,frame3,frame4], timePerFrame: 0.1)
         let repeatAnimation:SKAction = SKAction.repeatForever(animation)
         player?.run(repeatAnimation)
-
+        
+        let bg:SKAudioNode = SKAudioNode(fileNamed: "music.m4a")
+        bg.autoplayLooped = true
+        self.addChild(bg)
        
     }
     
@@ -157,7 +160,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         checkLaser(currentTime - lastTime)
         lastTime = currentTime
         
-    }
+        }
     
     func checkLaser(_ frameRate:TimeInterval){
         // add time to timer
@@ -188,7 +191,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         laser.physicsBody?.categoryBitMask = laserCategory
         laser.physicsBody?.collisionBitMask = noCategory
         laser.physicsBody?.contactTestBitMask = enemyCategory
-        self.run(SKAction.playSoundFileNamed("laser", waitForCompletion: false))
+//        self.run(SKAction.playSoundFileNamed("laser", waitForCompletion: false))
 
 
     }

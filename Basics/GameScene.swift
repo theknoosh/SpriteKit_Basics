@@ -55,7 +55,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         platform?.physicsBody?.collisionBitMask = playerCategory
         platform?.physicsBody?.contactTestBitMask = noCategory
         
+        let moveAction:SKAction = SKAction.moveBy(x: -200, y: 0, duration: 2)
+        moveAction.timingMode = .easeInEaseOut
+        let reversedAction:SKAction = moveAction.reversed()
+        let sequence:SKAction = SKAction.sequence([moveAction,reversedAction])
+        let repeatAction:SKAction = SKAction.repeatForever(sequence)
+        item?.run(repeatAction, withKey: "itemMove")
         
+        let frame1:SKTexture = SKTexture(imageNamed: "player_frame1")
+        let frame2:SKTexture = SKTexture(imageNamed: "player_frame2")
+        let frame3:SKTexture = SKTexture(imageNamed: "player_frame3")
+        let frame4:SKTexture = SKTexture(imageNamed: "player_frame4")
+        
+        let animation:SKAction = SKAction.animate(with: [frame1,frame2,frame3,frame4], timePerFrame: 0.1)
+        let repeatAnimation:SKAction = SKAction.repeatForever(animation)
+        player?.run(repeatAnimation)
+
+       
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -66,6 +82,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let otherNode:SKNode = (cA == playerCategory) ? contact.bodyB.node! : contact.bodyA.node!
             playerDidCollide(with: otherNode)
         }else {
+            let explosion:SKEmitterNode = SKEmitterNode(fileNamed: "explosion")!
+            explosion.position = contact.bodyA.node!.position
+            self.addChild(explosion)
             contact.bodyA.node?.removeFromParent()
             contact.bodyB.node?.removeFromParent()
         }
@@ -73,9 +92,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func playerDidCollide (with other:SKNode){
+        if other.parent == nil {
+            return
+        }
         let otherCategory = other.physicsBody?.categoryBitMask
         if otherCategory == itemCategory {
-            let points:Int = other.userData?.value(forKey: "points") as! Int
+            let points:Int = other.userData?.value(forKey: "coins") as! Int
             score += points
             label?.text = "Score: \(score)"
             
@@ -91,6 +113,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let xpos = pos.x
         let ypos = player?.position.y
         player?.position = CGPoint(x: xpos, y: ypos!)
+        item?.removeAction(forKey: "itemMove")
+        
         
         isTouching = true
     }
@@ -128,7 +152,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         if isTouching {
-            player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 7))
+            player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 10))
         }
         checkLaser(currentTime - lastTime)
         lastTime = currentTime

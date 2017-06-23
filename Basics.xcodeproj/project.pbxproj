@@ -18,6 +18,7 @@
 		166E3F951EF8A5E200CC1721 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 166E3F931EF8A5E200CC1721 /* LaunchScreen.storyboard */; };
 		166E3F9D1EF8B36B00CC1721 /* Menu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 166E3F9C1EF8B36B00CC1721 /* Menu.sks */; };
 		166E3F9F1EF8B8F400CC1721 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166E3F9E1EF8B8F400CC1721 /* MainMenu.swift */; };
+		1683A4CE1EFC6B68001400B7 /* explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1683A4CD1EFC6B68001400B7 /* explosion.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		166E3F961EF8A5E200CC1721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		166E3F9C1EF8B36B00CC1721 /* Menu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Menu.sks; sourceTree = "<group>"; };
 		166E3F9E1EF8B8F400CC1721 /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		1683A4CD1EFC6B68001400B7 /* explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosion.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				166E3F861EF8A5E200CC1721 /* GameScene.sks */,
 				166E3F881EF8A5E200CC1721 /* Actions.sks */,
 				166E3F8A1EF8A5E200CC1721 /* GameScene.swift */,
+				1683A4CD1EFC6B68001400B7 /* explosion.sks */,
 				166E3F9C1EF8B36B00CC1721 /* Menu.sks */,
 				166E3F9E1EF8B8F400CC1721 /* MainMenu.swift */,
 				166E3F8C1EF8A5E200CC1721 /* GameViewController.swift */,
@@ -147,6 +150,7 @@
 				166E3F871EF8A5E200CC1721 /* GameScene.sks in Resources */,
 				16009E991EFB2F8D0068FB79 /* Laser.sks in Resources */,
 				166E3F921EF8A5E200CC1721 /* Assets.xcassets in Resources */,
+				1683A4CE1EFC6B68001400B7 /* explosion.sks in Resources */,
 				166E3F951EF8A5E200CC1721 /* LaunchScreen.storyboard in Resources */,
 				166E3F891EF8A5E200CC1721 /* Actions.sks in Resources */,
 			);

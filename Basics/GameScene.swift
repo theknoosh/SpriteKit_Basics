@@ -29,8 +29,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let itemCategory:UInt32 = 0b1 << 3
     let platformCategory:UInt32 = 0b1 << 4
     
-
-    
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
         label = self.childNode(withName: "label") as? SKLabelNode
@@ -82,9 +80,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let otherNode:SKNode = (cA == playerCategory) ? contact.bodyB.node! : contact.bodyA.node!
             playerDidCollide(with: otherNode)
         }else {
+            
             let explosion:SKEmitterNode = SKEmitterNode(fileNamed: "explosion")!
             explosion.position = contact.bodyA.node!.position
             self.addChild(explosion)
+            self.run(SKAction.playSoundFileNamed("explosion", waitForCompletion: false))
             contact.bodyA.node?.removeFromParent()
             contact.bodyB.node?.removeFromParent()
         }
@@ -188,6 +188,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         laser.physicsBody?.categoryBitMask = laserCategory
         laser.physicsBody?.collisionBitMask = noCategory
         laser.physicsBody?.contactTestBitMask = enemyCategory
+        self.run(SKAction.playSoundFileNamed("laser", waitForCompletion: false))
+
 
     }
 }
